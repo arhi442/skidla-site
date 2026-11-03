@@ -6,6 +6,15 @@
 <title>Скидла — горячие скидки для своих</title>
 <meta name="description" content="Автоматическая лента лучших скидок: наушники, клавиатуры, кроссовки, мерч. Только проверенные дропы цен.">
 <meta name="takprodam-verification" content="fec24dc8-c310-42d3-8273-bfd00b44c7c0">
+<meta property="og:title" content="Скидла — горячие скидки для своих">
+<meta property="og:description" content="Автоматическая лента лучших скидок: наушники, клавиатуры, кроссовки. Робот проверяет цены.">
+<meta property="og:url" content="https://skidki.arhi-media.ru/">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://skidki.arhi-media.ru/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Скидла — до −70% на технику и мерч">
+<meta name="twitter:description" content="Горячие скидки для своих. Наушники, клавиатуры, кроссовки — лента обновляется сама.">
+<meta name="twitter:image" content="https://skidki.arhi-media.ru/og-image.jpg">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M20.5 2.5 9.5 13.5' stroke='%23f04c25' stroke-width='2.5' stroke-linecap='round'/%3E%3Cpath d='M8.6 10.5c-2.6-1.4-5-.4-6 1.8 2 .3 2.8 1.2 3 2.5-2-.3-3.2.7-3.7 2.7 1.9-.5 3 .1 3.8 1.5-.3 2.2.8 4 3.1 4.6 3 .8 6.2-1.3 6.5-4.6.3-2-.7-3.7-2.2-5-.5-.4-1-.7-1.6-1l-2.9-1.9z' fill='%23f04c25'/%3E%3C/svg%3E">
 <style>
 :root {
@@ -203,6 +212,24 @@ footer { max-width:1140px; margin:0 auto; padding:0 20px 60px; color:var(--muted
 .expired-head {{ max-width:1140px; margin:8px auto 0; padding:22px 20px 6px; color:var(--muted);
   font-size:13px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; }}
 
+
+/* --- п.10: skeleton --- */
+.skel {{ background:var(--card); border-radius:16px; border:1px solid var(--line); overflow:hidden; }}
+.skel .sq {{ aspect-ratio:1; background:linear-gradient(100deg,#f1f2f5 40%,#e9ebee 50%,#f1f2f5 60%);
+  background-size:200% 100%; animation:skel 1.4s ease infinite; }}
+.skel .ln {{ height:14px; margin:12px 15px; border-radius:7px; background:linear-gradient(100deg,#f1f2f5 40%,#e9ebee 50%,#f1f2f5 60%);
+  background-size:200% 100%; animation:skel 1.4s ease infinite; }}
+.skel .ln.s {{ width:60%; margin-bottom:16px; }}
+@keyframes skel {{ from {{ background-position:150% 0; }} to {{ background-position:-50% 0; }} }}
+#grid.skeleton-mode .card {{ display:none; }}
+
+/* --- п.11: показать ещё --- */
+.more-row {{ max-width:1140px; margin:0 auto; padding:0 20px 40px; text-align:center; }}
+.more-btn {{ background:#fff; color:var(--accent); border:2px solid var(--accent); border-radius:14px;
+  padding:12px 32px; font-weight:700; font-size:15px; cursor:pointer; transition:.15s; font-family:inherit; }}
+.more-btn:hover {{ background:var(--accent); color:#fff; }}
+
+.card.page-hidden { display:none; }
 .empty { grid-column:1/-1; text-align:center; color:var(--muted); padding:60px 0; font-size:16px; }
 </style>
 </head>
@@ -232,6 +259,9 @@ footer { max-width:1140px; margin:0 auto; padding:0 20px 60px; color:var(--muted
   <span class="count" id="cnt"></span>
 </div>
 <div class="grid" id="grid"><div class="empty">Пока пусто — первые скидки уже собираются. Загляни позже.</div></div>
+<div class="more-row" id="morerow" style="display:none">
+  <button class="more-btn" id="morebtn" type="button">Показать ещё</button>
+</div>
 <div class="expired-head" id="exphead" style="display:none">Уже закончилось</div>
 <div class="grid" id="expired" style="padding-top:6px"></div>
 <section class="sub">
@@ -283,6 +313,7 @@ footer { max-width:1140px; margin:0 auto; padding:0 20px 60px; color:var(--muted
   function render(list) {
     list.forEach(function(c) { grid.appendChild(c); });
     cnt.textContent = list.length ? list.length + ' находок' : '';
+    updateMore(list);
   }
   function current() {
     var vis = cards.filter(function(c) { return c.style.display !== 'none'; });
@@ -470,6 +501,37 @@ footer { max-width:1140px; margin:0 auto; padding:0 20px 60px; color:var(--muted
       });
     });
   }
+
+  // --- п.10: skeleton на первую загрузку ---
+  (function() {
+    if (cards.length) return;  // карточки уже есть (SSR) — скелет не нужен
+    var g = document.getElementById('grid');
+    if (!g) return;
+    for (var i = 0; i < 8; i++) {
+      var s = document.createElement('div');
+      s.className = 'skel';
+      s.innerHTML = '<div class="sq"></div><div class="ln"></div><div class="ln s"></div>';
+      g.appendChild(s);
+    }
+  })();
+
+  // --- п.11: показать ещё ---
+  var STEP = 24;
+  var shown = STEP;
+  var morebtn = document.getElementById('morebtn');
+  var morerow = document.getElementById('morerow');
+  function updateMore(list) {
+    if (morebtn && morerow) {
+      morerow.style.display = list.length > shown ? '' : 'none';
+    }
+    list.forEach(function(c, i) {
+      c.classList.toggle('page-hidden', i >= shown);
+    });
+  }
+  if (morebtn) morebtn.addEventListener('click', function() {
+    shown += STEP;
+    render(current());
+  });
 
   applyFav(); favCount(); applyFilter();
 
