@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Скидла — горячие скидки для своих</title>
+<meta name="description" content="Автоматическая лента лучших скидок: наушники, клавиатуры, кроссовки, мерч. Только проверенные дропы цен.">
+<meta name="takprodam-verification" content="fec24dc8-c310-42d3-8273-bfd00b44c7c0">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M20.5 2.5 9.5 13.5' stroke='%23f04c25' stroke-width='2.5' stroke-linecap='round'/%3E%3Cpath d='M8.6 10.5c-2.6-1.4-5-.4-6 1.8 2 .3 2.8 1.2 3 2.5-2-.3-3.2.7-3.7 2.7 1.9-.5 3 .1 3.8 1.5-.3 2.2.8 4 3.1 4.6 3 .8 6.2-1.3 6.5-4.6.3-2-.7-3.7-2.2-5-.5-.4-1-.7-1.6-1l-2.9-1.9z' fill='%23f04c25'/%3E%3C/svg%3E">
+<style>
+:root {
+  --bg:#f6f7f9; --card:#fff; --accent:#f04c25; --text:#17181c; --muted:#7a8290;
+  --green:#0f9d58; --line:#e7e9ee;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:var(--bg); color:var(--text);
+  font-family:'Inter',-apple-system,'Segoe UI',sans-serif; }
+
+header { background:#fff; border-bottom:1px solid var(--line); position:sticky; top:0; z-index:9; }
+.hwrap { max-width:1140px; margin:0 auto; padding:14px 20px; display:flex; align-items:center; gap:18px; flex-wrap:wrap; }
+h1 { font-family:'Unbounded','Inter',sans-serif; font-weight:800; font-size:26px; letter-spacing:-.5px; }
+h1 span { color:var(--accent); }
+.search { flex:1; min-width:180px; max-width:420px; background:var(--bg); border:1px solid var(--line);
+  border-radius:12px; padding:10px 16px; color:var(--muted); font-size:14px; }
+.btn-top { background:var(--accent); color:#fff; border-radius:12px; padding:10px 18px;
+  font-weight:700; font-size:14px; text-decoration:none; transition:.15s; }
+.btn-top:hover { filter:brightness(1.08); }
+
+.hero { max-width:1140px; margin:0 auto; padding:26px 20px 10px; display:flex; gap:18px; align-items:stretch; flex-wrap:wrap; }
+.hero-main { flex:1; min-width:260px; background:linear-gradient(120deg,#f04c25,#ff7a45); color:#fff;
+  border-radius:20px; padding:28px; position:relative; overflow:hidden; }
+.hero-main h2 { font-family:'Unbounded','Inter',sans-serif; font-size:26px; font-weight:800; line-height:1.1; }
+.hero-main p { margin-top:8px; opacity:.92; font-size:14.5px; max-width:400px; }
+.hero-side { width:280px; background:var(--card); border:1px solid var(--line); border-radius:20px; padding:20px; }
+.hero-side h3 { font-size:16px; font-weight:800; margin-bottom:12px; }
+.hot-item { display:flex; gap:12px; padding:10px 0; border-top:1px solid var(--line); }
+.hot-item:first-of-type { border-top:0; }
+.hot-emoji { font-size:26px; }
+.hot-item b { font-size:14px; display:block; }
+.hot-item i { font-style:normal; color:var(--green); font-weight:800; font-size:15px; }
+
+.tabs { display:flex; gap:8px; flex-wrap:wrap; padding:18px 20px 6px; max-width:1140px; margin:0 auto; }
+.tab { padding:8px 16px; border-radius:999px; background:var(--card); border:1px solid var(--line);
+  color:var(--muted); text-decoration:none; font-size:13.5px; font-weight:600; transition:.15s; }
+.tab:hover { border-color:var(--accent); color:var(--text); }
+.tab.active { background:var(--accent); color:#fff; border-color:var(--accent); }
+
+.grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(250px,1fr)); gap:14px;
+  max-width:1140px; margin:0 auto; padding:12px 20px 60px; }
+.card { background:var(--card); border-radius:16px; overflow:hidden; border:1px solid var(--line);
+  transition:.2s; display:flex; flex-direction:column; }
+.card:hover { transform:translateY(-4px); box-shadow:0 16px 36px -18px rgba(23,24,28,.25); border-color:#f04c2566; }
+.thumb { position:relative; aspect-ratio:1; background:#f1f2f5; }
+.thumb img { width:100%; height:100%; object-fit:cover; display:block; }
+.badge { position:absolute; top:12px; left:12px; background:var(--accent); color:#fff;
+  font-weight:800; font-size:13px; padding:5px 11px; border-radius:10px; }
+.emoji { position:absolute; top:12px; right:12px; font-size:19px; filter:drop-shadow(0 1px 3px rgba(0,0,0,.25)); }
+.body { padding:13px 15px 15px; display:flex; flex-direction:column; gap:7px; flex:1; }
+.title { font-size:14.5px; line-height:1.35; font-weight:600; display:-webkit-box; -webkit-line-clamp:2;
+  -webkit-box-orient:vertical; overflow:hidden; min-height:39px; }
+.prices { display:flex; align-items:baseline; gap:9px; }
+.now { font-size:22px; font-weight:800; color:var(--green); }
+.was { font-size:13px; color:var(--muted); text-decoration:line-through; }
+.mp { color:var(--muted); font-size:11.5px; letter-spacing:.07em; text-transform:uppercase; font-weight:700; }
+.buy { margin-top:auto; display:block; text-align:center; padding:10px; border-radius:12px;
+  background:#fff; color:var(--accent); font-weight:700; text-decoration:none; font-size:14.5px;
+  border:2px solid var(--accent); transition:.15s; }
+.buy:hover { background:var(--accent); color:#fff; }
+footer { max-width:1140px; margin:0 auto; padding:0 20px 60px; color:var(--muted); font-size:12.5px; line-height:1.6; }
+
+.icon { display:inline-block; vertical-align:-4px; }
+.icon svg { width:1em; height:1em; display:block; }
+.tab .icon { width:16px; height:16px; margin-right:5px; vertical-align:-3px; }
+.tab .icon svg { width:16px; height:16px; }
+.hot-emoji { width:34px; height:34px; flex:0 0 34px; display:grid; place-items:center;
+  background:#fff7f3; border:1px solid #ffe0d1; border-radius:10px; }
+.hot-emoji svg { width:22px; height:22px; }
+.card .emoji { background:#fff; border:1px solid var(--line); border-radius:8px;
+  width:30px; height:30px; display:grid; place-items:center; }
+.card .emoji svg { width:18px; height:18px; }
+.buy-ic { display:inline-block; vertical-align:-2px; }
+
+.empty { grid-column:1/-1; text-align:center; color:var(--muted); padding:60px 0; font-size:16px; }
+</style>
+</head>
+<body>
+<header><div class="hwrap">
+  <h1>Скид<span>ла</span> <span class='icon' style='width:22px;height:22px;vertical-align:-2px'><svg viewBox="0 0 24 24" fill="none"><path d="M20.5 2.5 9.5 13.5" stroke="#f04c25" stroke-width="2.2" stroke-linecap="round" opacity=".5"/><path d="M17.5 3.5 10 11" stroke="#ff7a45" stroke-width="1.6" stroke-linecap="round" opacity=".35"/><path d="M8.6 10.5c-1.9-1-3.6-.5-4.6 1.2 1.7.2 2.4 1 2.6 2.1-1.8-.2-2.9.6-3.3 2.3 1.6-.4 2.6.1 3.3 1.3-.3 1.9.7 3.4 2.6 3.9 2.6.7 5.3-1.1 5.6-3.9.2-1.7-.6-3.1-1.9-4.2-.4-.4-.9-.7-1.4-1l-2.9-1.7z" fill="#f04c25"/><circle cx="9.9" cy="15.6" r="1.1" fill="#ffd9cc"/></svg></span></h1>
+  <div class="search"><span class="icon"><svg viewBox="0 0 24 24" fill="none"><circle cx="10.5" cy="10.5" r="7" stroke="currentColor" stroke-width="2.2"/><path d="M8.2 7.6c-1 .8-1.6 1.8-1.7 3" stroke="#f04c25" stroke-width="1.6" stroke-linecap="round"/><path d="m15.8 15.8 5 5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><circle cx="10.5" cy="10.5" r="2.2" stroke="#f04c25" stroke-width="1.6" stroke-dasharray="1.4 1.6" stroke-linecap="round"/></svg></span> искать дропы…</div>
+  <a class="btn-top" href="#feed"><span class="icon"><svg viewBox="0 0 24 24" fill="none"><path d="M20.5 2.5 9.5 13.5" stroke="#f04c25" stroke-width="2.2" stroke-linecap="round" opacity=".5"/><path d="M17.5 3.5 10 11" stroke="#ff7a45" stroke-width="1.6" stroke-linecap="round" opacity=".35"/><path d="M8.6 10.5c-1.9-1-3.6-.5-4.6 1.2 1.7.2 2.4 1 2.6 2.1-1.8-.2-2.9.6-3.3 2.3 1.6-.4 2.6.1 3.3 1.3-.3 1.9.7 3.4 2.6 3.9 2.6.7 5.3-1.1 5.6-3.9.2-1.7-.6-3.1-1.9-4.2-.4-.4-.9-.7-1.4-1l-2.9-1.7z" fill="#f04c25"/><circle cx="9.9" cy="15.6" r="1.1" fill="#ffd9cc"/></svg></span>Топ дня</a>
+</div></header>
+<div class="hero">
+  <div class="hero-main">
+    <h2>Дропы дня</h2>
+    <span class='hero-ic' style='position:absolute;right:24px;bottom:24px;width:64px;height:64px;display:block'><svg viewBox="0 0 24 24" fill="none"><path d="M20.5 2.5 9.5 13.5" stroke="#f04c25" stroke-width="2.2" stroke-linecap="round" opacity=".5"/><path d="M17.5 3.5 10 11" stroke="#ff7a45" stroke-width="1.6" stroke-linecap="round" opacity=".35"/><path d="M8.6 10.5c-1.9-1-3.6-.5-4.6 1.2 1.7.2 2.4 1 2.6 2.1-1.8-.2-2.9.6-3.3 2.3 1.6-.4 2.6.1 3.3 1.3-.3 1.9.7 3.4 2.6 3.9 2.6.7 5.3-1.1 5.6-3.9.2-1.7-.6-3.1-1.9-4.2-.4-.4-.9-.7-1.4-1l-2.9-1.7z" fill="#f04c25"/><circle cx="9.9" cy="15.6" r="1.1" fill="#ffd9cc"/></svg></span>
+    <p>Самые жирные скидки за 24 часа · 0 активных находок. Успей, пока цена жива.</p>
+  </div>
+  <div class="hero-side">
+    <h3><span class='icon' style='width:18px;height:18px;vertical-align:-3px'><svg viewBox="0 0 24 24" fill="none"><path d="M20.5 2.5 9.5 13.5" stroke="#f04c25" stroke-width="2.2" stroke-linecap="round" opacity=".5"/><path d="M17.5 3.5 10 11" stroke="#ff7a45" stroke-width="1.6" stroke-linecap="round" opacity=".35"/><path d="M8.6 10.5c-1.9-1-3.6-.5-4.6 1.2 1.7.2 2.4 1 2.6 2.1-1.8-.2-2.9.6-3.3 2.3 1.6-.4 2.6.1 3.3 1.3-.3 1.9.7 3.4 2.6 3.9 2.6.7 5.3-1.1 5.6-3.9.2-1.7-.6-3.1-1.9-4.2-.4-.4-.9-.7-1.4-1l-2.9-1.7z" fill="#f04c25"/><circle cx="9.9" cy="15.6" r="1.1" fill="#ffd9cc"/></svg></span> Горячее сейчас</h3>
+    <div class="hot-item"><span class="hot-emoji"><svg viewBox="0 0 24 24" fill="none"><path d="M20.5 2.5 9.5 13.5" stroke="#f04c25" stroke-width="2.2" stroke-linecap="round" opacity=".5"/><path d="M17.5 3.5 10 11" stroke="#ff7a45" stroke-width="1.6" stroke-linecap="round" opacity=".35"/><path d="M8.6 10.5c-1.9-1-3.6-.5-4.6 1.2 1.7.2 2.4 1 2.6 2.1-1.8-.2-2.9.6-3.3 2.3 1.6-.4 2.6.1 3.3 1.3-.3 1.9.7 3.4 2.6 3.9 2.6.7 5.3-1.1 5.6-3.9.2-1.7-.6-3.1-1.9-4.2-.4-.4-.9-.7-1.4-1l-2.9-1.7z" fill="#f04c25"/><circle cx="9.9" cy="15.6" r="1.1" fill="#ffd9cc"/></svg></span><div><b>Первые дропы уже на подходе</b><i>заглядывай чаще</i></div></div>
+  </div>
+</div>
+<div class="tabs" id="feed"><a class="tab" href="/?category=tws"><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14v-2a8 8 0 0 1 16 0v2"/><rect x="3" y="14" width="4" height="7" rx="2"/><rect x="17" y="14" width="4" height="7" rx="2"/></svg></span>Наушники</a><a class="tab" href="/?category=keyboards"><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M7 10h.01M11 10h.01M15 10h.01M7 14h.01M11 14h.01M15 14h.01M18 10v4"/></svg></span>Клавиатуры</a><a class="tab" href="/?category=mice"><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="2.5" width="10" height="19" rx="5"/><path d="M12 6v2.2M12 10v1.2M12 13v1.2"/><path d="M12.8 15.2 15 13" opacity=".45"/></svg></span>Мышки</a><a class="tab" href="/?category=sneakers"><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 16c0-2 1-3.5 2-5 .8-1.2 1-2.5 1-4l2 2c1-1 1.5-2 1.5-3.5L11 9c1.5-1 2-2.5 2-4.5 1.5 2 2 3.5 2 5.5l2-1.5c1 1.5 1.5 3 1.5 5 0 3-2.5 5.5-5.5 5.5H8c-2.8 0-5-1.5-5-3z"/></svg></span>Кроссовки</a><a class="tab" href="/?category=merch"><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3 4 4c-.6.2-1 .7-1 1.3C3 13 8 20 17.5 21c.6 0 1.2-.4 1.3-1l1-4-5-2-2 2.5c-3-1.5-4.5-3-6-6L9 8.5 8 3z"/><path d="M15 8.5c.5-1 .3-2.3-.5-3"/></svg></span>Мерч</a><a class="tab" href="/?category=gaming"><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 8h11a1.8 1.8 0 0 1 1.8 1.8v.6c0 .5-.2 1-.6 1.3l-1.4 1.2v5.4a1.7 1.7 0 0 1-1.7 1.7H8.4a1.7 1.7 0 0 1-1.7-1.7v-5.4L5.3 11.7c-.4-.3-.6-.8-.6-1.3v-.6A1.8 1.8 0 0 1 6.5 8z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/></svg></span>Gaming</a><a class="tab" href="/?category=gadgets"><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2.5" width="12" height="19" rx="3"/><circle cx="12" cy="12" r="3.2"/><path d="M9 5.5h.01M15 5.5h.01M9 18.5h.01M15 18.5h.01"/></svg></span>Гаджеты</a><a class="tab" href="/?category=subs"><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5v-2A1.5 1.5 0 0 1 4.5 5h2L8 3h8l1.5 2h2A1.5 1.5 0 0 1 21 6.5v2"/><path d="M4 8.5h16l-1.3 11a1.7 1.7 0 0 1-1.7 1.5H7a1.7 1.7 0 0 1-1.7-1.5L4 8.5z"/><path d="m9.5 12 .5 5M14.5 12l-.5 5"/></svg></span>Подписки</a></div>
+<div class="grid"><div class="empty">Пока пусто — первые скидки уже собираются. Загляни позже.</div></div>
+<footer>
+  <span class='icon' style='width:14px;height:14px'><svg viewBox="0 0 24 24" fill="none"><path d="M6.5 3h11v2.5c0 2-1.8 3.7-4 5.5-2.2-1.8-4-3.5-4-5.5V3z" fill="#ffd9cc" stroke="#f04c25" stroke-width="1.8" stroke-linejoin="round"/><path d="M6.5 21h11v-2.5c0-2-1.8-3.7-4-5.5-2.2 1.8-4 3.5-4 5.5V21z" fill="#ffd9cc" stroke="#f04c25" stroke-width="1.8" stroke-linejoin="round"/><path d="M12 11v2" stroke="#f04c25" stroke-width="1.6" stroke-linecap="round"/></svg></span> Скидки живут недолго — цены сверьте перед оплатой. Покупка по ссылке поддерживает сайт.
+  <span class='icon' style='width:14px;height:14px'><svg viewBox="0 0 24 24" fill="none"><path d="M12 2.5 4 5.2C3.4 5.4 3 6 3 6.6 3 13.8 8 19.6 12 21.5c4-1.9 9-7.7 9-14.9 0-.6-.4-1.2-1-1.4L12 2.5z" fill="#e8f5ee" stroke="#0f9d58" stroke-width="1.8" stroke-linejoin="round"/><path d="m8.2 11.8 2.6 2.6 5-5.4" stroke="#0f9d58" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Все цены перепроверяются — закончившиеся скидки убираются из ленты автоматически.
+</footer>
+</body>
+</html>
