@@ -80,6 +80,129 @@ footer { max-width:1140px; margin:0 auto; padding:0 20px 60px; color:var(--muted
 .card .emoji svg { width:18px; height:18px; }
 .buy-ic { display:inline-block; vertical-align:-2px; }
 
+
+/* --- сортировка и живой поиск --- */
+.sort-row { display:flex; gap:8px; align-items:center; flex-wrap:wrap;
+  max-width:1140px; margin:0 auto; padding:8px 20px 4px; }
+.sort-label { color:var(--muted); font-size:12.5px; font-weight:600; }
+.chip { padding:6px 13px; border-radius:999px; background:var(--card); border:1px solid var(--line);
+  color:var(--muted); font-size:12.5px; font-weight:600; cursor:pointer; transition:.15s; }
+.chip:hover { border-color:var(--accent); color:var(--text); }
+.chip.active { background:var(--accent); color:#fff; border-color:var(--accent); }
+.count { color:var(--muted); font-size:12px; margin-left:auto; }
+
+
+/* --- п.2: цена в кнопке --- */
+.buy {{ display:flex; align-items:center; justify-content:center; gap:8px; }}
+.buy .bp {{ font-weight:800; }}
+.buy .barr {{ opacity:.7; font-weight:400; }}
+
+/* --- п.3: цветные плашки маркетплейсов --- */
+.mp-badge {{ display:inline-block; padding:3px 10px; border-radius:7px; font-size:11px;
+  font-weight:800; letter-spacing:.06em; color:#fff; text-transform:uppercase; }}
+.mp-ozon {{ background:#005bff; }}
+.mp-wb {{ background:#7b2fbe; }}
+.mp-ali {{ background:#ff6a00; }}
+.mp-ya {{ background:#fc3f1d; }}
+.mp-other {{ background:#5a6572; }}
+
+/* --- п.4: тикер «скидка закончится» --- */
+.ticker {{ display:flex; align-items:center; gap:6px; color:var(--accent); font-weight:700;
+  font-size:12.5px; font-variant-numeric:tabular-nums; }}
+.ticker svg {{ width:13px; height:13px; flex:0 0 13px; }}
+
+/* --- п.1: мобильная ревизия 375px --- */
+@media (max-width:640px) {{
+  .hwrap {{ padding:12px 14px; gap:10px; }}
+  h1 {{ font-size:21px; }}
+  .search {{ order:3; flex-basis:100%; max-width:none; min-width:0; padding:9px 14px; font-size:13px; }}
+  .btn-top {{ padding:8px 13px; font-size:12.5px; }}
+  .hero {{ padding:16px 14px 6px; flex-direction:column; }}
+  .hero-main {{ padding:18px 20px; min-width:0; }}
+  .hero-main h2 {{ font-size:21px; }}
+  .hero-main p {{ font-size:13px; }}
+  .hero-side {{ width:auto; }}
+  .hero-ic {{ width:44px !important; height:44px !important; }}
+  .tabs {{ padding:12px 14px 4px; gap:6px; }}
+  .tab {{ padding:7px 12px; font-size:12.5px; }}
+  .tab .icon {{ display:none; }}
+  .sort-row {{ padding:6px 14px 2px; gap:6px; overflow-x:auto; flex-wrap:nowrap; scrollbar-width:none; }}
+  .sort-row::-webkit-scrollbar {{ display:none; }}
+  .chip {{ padding:6px 11px; font-size:12px; flex:0 0 auto; }}
+  .count {{ flex:0 0 auto; }}
+  .grid {{ grid-template-columns:repeat(2,1fr); gap:10px; padding:10px 14px 40px; }}
+  .card .emoji {{ width:26px; height:26px; }}
+  .title {{ font-size:13px; min-height:35px; }}
+  .now {{ font-size:19px; }}
+  .buy {{ padding:9px 6px; font-size:13px; }}
+  footer {{ padding:0 14px 40px; }}
+}}
+
+/* --- п.6: истёкшие карточки --- */
+.card.expired {{ opacity:.55; filter:grayscale(.7); }}
+.card.expired .thumb img {{ filter:grayscale(1); }}
+.exp-lbl {{ position:absolute; top:12px; left:12px; background:#5a6572; color:#fff;
+  font-weight:800; font-size:12px; padding:5px 10px; border-radius:8px; z-index:3; }}
+
+
+/* --- п.5: поделиться --- */
+.share {{ position:absolute; bottom:12px; right:12px; width:32px; height:32px; border-radius:50%;
+  background:#fff; border:1px solid var(--line); display:grid; place-items:center; cursor:pointer;
+  transition:.15s; z-index:3; }}
+.share:hover {{ border-color:var(--accent); color:var(--accent); }}
+.share svg {{ width:15px; height:15px; }}
+
+/* --- п.7: избранное --- */
+.fav {{ position:absolute; top:48px; right:12px; width:32px; height:32px; border-radius:50%;
+  background:rgba(255,255,255,.92); border:1px solid var(--line); display:grid; place-items:center;
+  cursor:pointer; transition:.15s; z-index:3; }}
+.fav:hover, .fav.on {{ border-color:var(--accent); color:var(--accent); }}
+.fav.on {{ color:#ff3d6d; }}
+.fav svg {{ width:16px; height:16px; }}
+.tab--fav {{ display:none; }}
+.tab--fav.has-items {{ display:inline-block; }}
+.fav-count {{ background:var(--accent); color:#fff; border-radius:999px; padding:1px 7px;
+  font-size:10.5px; margin-left:5px; }}
+
+/* --- п.8: подписка --- */
+.sub {{ max-width:1140px; margin:0 auto; padding:18px 20px 30px; }}
+.sub-box {{ background:var(--card); border:1px solid var(--line); border-radius:20px; padding:26px;
+  display:flex; gap:26px; align-items:center; flex-wrap:wrap; background:linear-gradient(120deg,#fff7f3,#fff); }}
+.sub-left {{ flex:1; min-width:240px; }}
+.sub-left h2 {{ font-size:20px; font-weight:800; letter-spacing:-.02em; }}
+.sub-left p {{ color:var(--muted); font-size:13.5px; margin-top:6px; }}
+.sub-form {{ display:flex; flex-direction:column; gap:10px; min-width:280px; flex:1; }}
+.sub-row {{ display:flex; gap:8px; }}
+.sub-input {{ flex:1; border:1px solid var(--line); border-radius:12px; padding:11px 14px;
+  font-size:14px; background:#fff; color:var(--text); outline:none; font-family:inherit; }}
+.sub-input:focus {{ border-color:var(--accent); }}
+.sub-chans {{ display:flex; gap:6px; }}
+.sub-chan {{ flex:1; text-align:center; padding:8px; border:1px solid var(--line); border-radius:10px;
+  font-size:13px; font-weight:600; cursor:pointer; color:var(--muted); transition:.15s;
+  background:#fff; user-select:none; }}
+.sub-chan.on {{ border-color:var(--accent); color:var(--accent); background:#fff7f3; }}
+.sub-cats {{ display:flex; gap:6px; flex-wrap:wrap; }}
+.sub-cat {{ padding:5px 11px; border-radius:999px; border:1px solid var(--line); font-size:12px;
+  font-weight:600; cursor:pointer; color:var(--muted); background:#fff; user-select:none; transition:.15s; }}
+.sub-cat.on {{ background:var(--accent); color:#fff; border-color:var(--accent); }}
+.sub-send {{ background:var(--accent); color:#fff; border:none; border-radius:12px; padding:11px;
+  font-weight:700; font-size:14px; cursor:pointer; transition:.15s; font-family:inherit; }}
+.sub-send:hover {{ filter:brightness(1.08); }}
+.sub-msg {{ font-size:12.5px; min-height:18px; }}
+.sub-msg.ok {{ color:var(--green); font-weight:600; }}
+.sub-msg.err {{ color:#d93025; }}
+.sub-msg.busy {{ color:var(--muted); }}
+@media (max-width:640px) {{
+  .sub {{ padding:14px; }}
+  .sub-box {{ padding:18px 16px; }}
+  .sub-form {{ min-width:0; }}
+  .sub-row {{ flex-direction:column; }}
+}}
+
+/* --- п.6: блок истёкших --- */
+.expired-head {{ max-width:1140px; margin:8px auto 0; padding:22px 20px 6px; color:var(--muted);
+  font-size:13px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; }}
+
 .empty { grid-column:1/-1; text-align:center; color:var(--muted); padding:60px 0; font-size:16px; }
 </style>
 </head>
@@ -100,11 +223,258 @@ footer { max-width:1140px; margin:0 auto; padding:0 20px 60px; color:var(--muted
     <div class="hot-item"><span class="hot-emoji"><svg viewBox="0 0 24 24" fill="none"><path d="M20.5 2.5 9.5 13.5" stroke="#f04c25" stroke-width="2.2" stroke-linecap="round" opacity=".5"/><path d="M17.5 3.5 10 11" stroke="#ff7a45" stroke-width="1.6" stroke-linecap="round" opacity=".35"/><path d="M8.6 10.5c-1.9-1-3.6-.5-4.6 1.2 1.7.2 2.4 1 2.6 2.1-1.8-.2-2.9.6-3.3 2.3 1.6-.4 2.6.1 3.3 1.3-.3 1.9.7 3.4 2.6 3.9 2.6.7 5.3-1.1 5.6-3.9.2-1.7-.6-3.1-1.9-4.2-.4-.4-.9-.7-1.4-1l-2.9-1.7z" fill="#f04c25"/><circle cx="9.9" cy="15.6" r="1.1" fill="#ffd9cc"/></svg></span><div><b>Первые дропы уже на подходе</b><i>заглядывай чаще</i></div></div>
   </div>
 </div>
-<div class="tabs" id="feed"><a class="tab" href="/?category=tws"><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14v-2a8 8 0 0 1 16 0v2"/><rect x="3" y="14" width="4" height="7" rx="2"/><rect x="17" y="14" width="4" height="7" rx="2"/></svg></span>Наушники</a><a class="tab" href="/?category=keyboards"><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M7 10h.01M11 10h.01M15 10h.01M7 14h.01M11 14h.01M15 14h.01M18 10v4"/></svg></span>Клавиатуры</a><a class="tab" href="/?category=mice"><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="2.5" width="10" height="19" rx="5"/><path d="M12 6v2.2M12 10v1.2M12 13v1.2"/><path d="M12.8 15.2 15 13" opacity=".45"/></svg></span>Мышки</a><a class="tab" href="/?category=sneakers"><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 16c0-2 1-3.5 2-5 .8-1.2 1-2.5 1-4l2 2c1-1 1.5-2 1.5-3.5L11 9c1.5-1 2-2.5 2-4.5 1.5 2 2 3.5 2 5.5l2-1.5c1 1.5 1.5 3 1.5 5 0 3-2.5 5.5-5.5 5.5H8c-2.8 0-5-1.5-5-3z"/></svg></span>Кроссовки</a><a class="tab" href="/?category=merch"><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3 4 4c-.6.2-1 .7-1 1.3C3 13 8 20 17.5 21c.6 0 1.2-.4 1.3-1l1-4-5-2-2 2.5c-3-1.5-4.5-3-6-6L9 8.5 8 3z"/><path d="M15 8.5c.5-1 .3-2.3-.5-3"/></svg></span>Мерч</a><a class="tab" href="/?category=gaming"><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 8h11a1.8 1.8 0 0 1 1.8 1.8v.6c0 .5-.2 1-.6 1.3l-1.4 1.2v5.4a1.7 1.7 0 0 1-1.7 1.7H8.4a1.7 1.7 0 0 1-1.7-1.7v-5.4L5.3 11.7c-.4-.3-.6-.8-.6-1.3v-.6A1.8 1.8 0 0 1 6.5 8z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/></svg></span>Gaming</a><a class="tab" href="/?category=gadgets"><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2.5" width="12" height="19" rx="3"/><circle cx="12" cy="12" r="3.2"/><path d="M9 5.5h.01M15 5.5h.01M9 18.5h.01M15 18.5h.01"/></svg></span>Гаджеты</a><a class="tab" href="/?category=subs"><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5v-2A1.5 1.5 0 0 1 4.5 5h2L8 3h8l1.5 2h2A1.5 1.5 0 0 1 21 6.5v2"/><path d="M4 8.5h16l-1.3 11a1.7 1.7 0 0 1-1.7 1.5H7a1.7 1.7 0 0 1-1.7-1.5L4 8.5z"/><path d="m9.5 12 .5 5M14.5 12l-.5 5"/></svg></span>Подписки</a></div>
-<div class="grid"><div class="empty">Пока пусто — первые скидки уже собираются. Загляни позже.</div></div>
+<div class="tabs" id="feed"><a class="tab" href="/?category=tws"><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14v-2a8 8 0 0 1 16 0v2"/><rect x="3" y="14" width="4" height="7" rx="2"/><rect x="17" y="14" width="4" height="7" rx="2"/></svg></span>Наушники</a><a class="tab" href="/?category=keyboards"><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M7 10h.01M11 10h.01M15 10h.01M7 14h.01M11 14h.01M15 14h.01M18 10v4"/></svg></span>Клавиатуры</a><a class="tab" href="/?category=mice"><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="2.5" width="10" height="19" rx="5"/><path d="M12 6v2.2M12 10v1.2M12 13v1.2"/><path d="M12.8 15.2 15 13" opacity=".45"/></svg></span>Мышки</a><a class="tab" href="/?category=sneakers"><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 16c0-2 1-3.5 2-5 .8-1.2 1-2.5 1-4l2 2c1-1 1.5-2 1.5-3.5L11 9c1.5-1 2-2.5 2-4.5 1.5 2 2 3.5 2 5.5l2-1.5c1 1.5 1.5 3 1.5 5 0 3-2.5 5.5-5.5 5.5H8c-2.8 0-5-1.5-5-3z"/></svg></span>Кроссовки</a><a class="tab" href="/?category=merch"><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3 4 4c-.6.2-1 .7-1 1.3C3 13 8 20 17.5 21c.6 0 1.2-.4 1.3-1l1-4-5-2-2 2.5c-3-1.5-4.5-3-6-6L9 8.5 8 3z"/><path d="M15 8.5c.5-1 .3-2.3-.5-3"/></svg></span>Мерч</a><a class="tab" href="/?category=gaming"><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 8h11a1.8 1.8 0 0 1 1.8 1.8v.6c0 .5-.2 1-.6 1.3l-1.4 1.2v5.4a1.7 1.7 0 0 1-1.7 1.7H8.4a1.7 1.7 0 0 1-1.7-1.7v-5.4L5.3 11.7c-.4-.3-.6-.8-.6-1.3v-.6A1.8 1.8 0 0 1 6.5 8z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/></svg></span>Gaming</a><a class="tab" href="/?category=gadgets"><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2.5" width="12" height="19" rx="3"/><circle cx="12" cy="12" r="3.2"/><path d="M9 5.5h.01M15 5.5h.01M9 18.5h.01M15 18.5h.01"/></svg></span>Гаджеты</a><a class="tab" href="/?category=subs"><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5v-2A1.5 1.5 0 0 1 4.5 5h2L8 3h8l1.5 2h2A1.5 1.5 0 0 1 21 6.5v2"/><path d="M4 8.5h16l-1.3 11a1.7 1.7 0 0 1-1.7 1.5H7a1.7 1.7 0 0 1-1.7-1.5L4 8.5z"/><path d="m9.5 12 .5 5M14.5 12l-.5 5"/></svg></span>Подписки</a><a class="tab tab--fav" id="favtab" href="#">Избранное<span class="fav-count" id="favcnt">0</span></a></div>
+<div class="sort-row">
+  <span class="sort-label">Сортировка:</span>
+  <button class="chip active" data-sort="hot" type="button">Жирные</button>
+  <button class="chip" data-sort="cheap" type="button">Дешёвые</button>
+  <button class="chip" data-sort="new" type="button">Свежие</button>
+  <span class="count" id="cnt"></span>
+</div>
+<div class="grid" id="grid"><div class="empty">Пока пусто — первые скидки уже собираются. Загляни позже.</div></div>
+<div class="expired-head" id="exphead" style="display:none">Уже закончилось</div>
+<div class="grid" id="expired" style="padding-top:6px"></div>
+<section class="sub">
+  <div class="sub-box">
+    <div class="sub-left">
+      <h2>Лови дропы первым</h2>
+      <p>Выбери категории — пришлём горячие скидки, как только они появятся. Без спама, всё по делу.</p>
+    </div>
+    <form class="sub-form" id="subform">
+      <div class="sub-chans">
+        <div class="sub-chan on" data-chan="telegram">Telegram</div>
+        <div class="sub-chan" data-chan="email">Почта</div>
+      </div>
+      <div class="sub-row">
+        <input class="sub-input" id="subcontact" type="text" placeholder="@username или email"
+               autocomplete="off" />
+        <button class="sub-send" type="submit">Подписаться</button>
+      </div>
+      <div class="sub-cats" id="subcats">
+        <span class="sub-cat on" data-cat="tws">Наушники</span>
+        <span class="sub-cat on" data-cat="keyboards">Клавиатуры</span>
+        <span class="sub-cat" data-cat="mice">Мышки</span>
+        <span class="sub-cat" data-cat="sneakers">Кроссовки</span>
+        <span class="sub-cat" data-cat="merch">Мерч</span>
+        <span class="sub-cat" data-cat="gaming">Gaming</span>
+        <span class="sub-cat" data-cat="gadgets">Гаджеты</span>
+        <span class="sub-cat" data-cat="subs">Подписки</span>
+      </div>
+      <div class="sub-msg" id="submsg"></div>
+    </form>
+  </div>
+</section>
 <footer>
   <span class='icon' style='width:14px;height:14px'><svg viewBox="0 0 24 24" fill="none"><path d="M6.5 3h11v2.5c0 2-1.8 3.7-4 5.5-2.2-1.8-4-3.5-4-5.5V3z" fill="#ffd9cc" stroke="#f04c25" stroke-width="1.8" stroke-linejoin="round"/><path d="M6.5 21h11v-2.5c0-2-1.8-3.7-4-5.5-2.2 1.8-4 3.5-4 5.5V21z" fill="#ffd9cc" stroke="#f04c25" stroke-width="1.8" stroke-linejoin="round"/><path d="M12 11v2" stroke="#f04c25" stroke-width="1.6" stroke-linecap="round"/></svg></span> Скидки живут недолго — цены сверьте перед оплатой. Покупка по ссылке поддерживает сайт.
   <span class='icon' style='width:14px;height:14px'><svg viewBox="0 0 24 24" fill="none"><path d="M12 2.5 4 5.2C3.4 5.4 3 6 3 6.6 3 13.8 8 19.6 12 21.5c4-1.9 9-7.7 9-14.9 0-.6-.4-1.2-1-1.4L12 2.5z" fill="#e8f5ee" stroke="#0f9d58" stroke-width="1.8" stroke-linejoin="round"/><path d="m8.2 11.8 2.6 2.6 5-5.4" stroke="#0f9d58" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Все цены перепроверяются — закончившиеся скидки убираются из ленты автоматически.
 </footer>
+
 </body>
 </html>
+<script>
+(function() {
+  var cards = Array.from(document.querySelectorAll('.card'));
+  var grid = document.getElementById('grid');
+  var cnt = document.getElementById('cnt');
+  function data(el, k) {
+    var v = el.getAttribute('data-' + k);
+    return v ? parseFloat(v) : 0;
+  }
+  function render(list) {
+    list.forEach(function(c) { grid.appendChild(c); });
+    cnt.textContent = list.length ? list.length + ' находок' : '';
+  }
+  function current() {
+    var vis = cards.filter(function(c) { return c.style.display !== 'none'; });
+    var m = document.querySelector('.chip.active');
+    var k = m ? m.getAttribute('data-sort') : 'hot';
+    vis.sort(function(a, b) {
+      if (k === 'cheap') return data(a,'price') - data(b,'price');
+      if (k === 'new') return data(b,'ts') - data(a,'ts');
+      return data(b,'disc') - data(a,'disc');
+    });
+    return vis;
+  }
+  document.querySelectorAll('.chip').forEach(function(ch) {
+    ch.addEventListener('click', function() {
+      document.querySelectorAll('.chip').forEach(function(c) { c.classList.remove('active'); });
+      ch.classList.add('active');
+      render(current());
+    });
+  });
+  var s = document.querySelector('.search');
+  if (s) {
+    s.classList.add('live');
+    s.setAttribute('contenteditable', 'true');
+    s.addEventListener('input', function() {
+      var q = (s.textContent || '').toLowerCase().replace('искать дропы…','').trim();
+      cards.forEach(function(c) {
+        var ok = !q || (c.getAttribute('data-title') || '').indexOf(q) > -1;
+        c.style.display = ok ? '' : 'none';
+      });
+      render(current());
+    });
+  }
+  // --- тикер обратного отсчёта (п.4) ---
+  function tick() {
+    var now = Date.now() / 1000;
+    document.querySelectorAll('.ticker').forEach(function(el) {
+      var exp = parseFloat(el.getAttribute('data-exp')) || 0;
+      var d = exp - now;
+      var tt = el.querySelector('.tt');
+      if (!tt) return;
+      if (d <= 0) { tt.textContent = 'скидка истекла'; el.style.opacity = .6; return; }
+      var h = Math.floor(d / 3600), m = Math.floor((d % 3600) / 60), s = Math.floor(d % 60);
+      tt.textContent = (h > 0 ? h + ' ч ' : '') + m + ' мин' + (h === 0 && m < 10 ? ' ' + s + ' с' : '');
+    });
+  }
+  // --- п.5: Поделиться ---
+  document.addEventListener('click', function(e) {
+    var sh = e.target.closest('.share');
+    if (!sh) return;
+    e.preventDefault();
+    var url = sh.getAttribute('data-url') || location.href;
+    var ti = sh.getAttribute('data-title') || document.title;
+    if (navigator.share) {
+      navigator.share({ title: ti, text: ti, url: url }).catch(function() {});
+    } else {
+      var ta = document.createElement('textarea');
+      ta.value = url; document.body.appendChild(ta); ta.select();
+      try { document.execCommand('copy'); } catch (err) {}
+      document.body.removeChild(ta);
+      sh.style.color = 'var(--green)';
+      setTimeout(function() { sh.style.color = ''; }, 1200);
+    }
+  });
+
+  // --- п.7: Избранное ---
+  var FAV_KEY = 'skidla-fav';
+  var fav = {};
+  try { fav = JSON.parse(localStorage.getItem(FAV_KEY) || '{}'); } catch (e) { fav = {}; }
+  function favSave() { try { localStorage.setItem(FAV_KEY, JSON.stringify(fav)); } catch (e) {} }
+  function favCount() {
+    var n = Object.keys(fav).length;
+    var el = document.getElementById('favcnt');
+    var tab = document.getElementById('favtab');
+    if (el) el.textContent = n;
+    if (tab) tab.classList.toggle('has-items', n > 0);
+    return n;
+  }
+  var favMode = false;
+  function applyFav() {
+    document.querySelectorAll('.card').forEach(function(c) {
+      var b = c.querySelector('.fav');
+      if (!b) return;
+      var id = b.getAttribute('data-id');
+      b.classList.toggle('on', !!fav[id]);
+    });
+  }
+  document.addEventListener('click', function(e) {
+    var fv = e.target.closest('.fav');
+    if (!fv) return;
+    e.preventDefault();
+    var id = fv.getAttribute('data-id');
+    if (fav[id]) { delete fav[id]; } else { fav[id] = 1; }
+    favSave(); favCount(); applyFav(); applyFilter();
+  });
+  var favtab = document.getElementById('favtab');
+  if (favtab) favtab.addEventListener('click', function(e) {
+    e.preventDefault();
+    favMode = !favMode;
+    favtab.classList.toggle('active', favMode);
+    applyFilter();
+  });
+
+  function applyFilter() {
+    var q = (document.querySelector('.search') || {textContent: ''}).textContent || '';
+    q = q.toLowerCase().replace('искать дропы…', '').trim();
+    cards.forEach(function(c) {
+      var okS = !q || (c.getAttribute('data-title') || '').indexOf(q) > -1;
+      var id = c.querySelector('.fav') ? c.querySelector('.fav').getAttribute('data-id') : null;
+      var okF = !favMode || !!fav[id];
+      c.style.display = (okS && okF) ? '' : 'none';
+    });
+    render(current());
+  }
+
+  // --- п.6: истёкшие внизу (приходит флаг data-expired) ---
+  var expired = cards.filter(function(c) { return c.getAttribute('data-expired') === '1'; });
+  var live = cards.filter(function(c) { return c.getAttribute('data-expired') !== '1'; });
+  if (expired.length) {
+    var eh = document.getElementById('exphead');
+    var eg = document.getElementById('expired');
+    if (eh && eg) {
+      eh.style.display = '';
+      expired.forEach(function(c) { c.classList.add('expired'); eg.appendChild(c); });
+    }
+    cards = live;
+  }
+
+  // --- п.8: подписка ---
+  var sf = document.getElementById('subform');
+  if (sf) {
+    var chan = 'telegram';
+    document.querySelectorAll('.sub-chan').forEach(function(el) {
+      el.addEventListener('click', function() {
+        document.querySelectorAll('.sub-chan').forEach(function(c) { c.classList.remove('on'); });
+        el.classList.add('on');
+        chan = el.getAttribute('data-chan');
+        var inp = document.getElementById('subcontact');
+        inp.placeholder = chan === 'telegram' ? '@username' : 'email@example.com';
+      });
+    });
+    document.querySelectorAll('.sub-cat').forEach(function(el) {
+      el.addEventListener('click', function() { el.classList.toggle('on'); });
+    });
+    sf.addEventListener('submit', function(e) {
+      e.preventDefault();
+      var msg = document.getElementById('submsg');
+      var contact = document.getElementById('subcontact').value.trim();
+      var cats = Array.from(document.querySelectorAll('.sub-cat.on')).map(function(c) { return c.getAttribute('data-cat'); });
+      msg.className = 'sub-msg busy';
+      if (chan === 'telegram') {
+        if (!/^@[a-zA-Z0-9_]{3,}$/.test(contact)) {
+          msg.className = 'sub-msg err'; msg.textContent = 'Введи ник в Telegram, например @username';
+          return;
+        }
+      } else {
+        if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(contact)) {
+          msg.className = 'sub-msg err'; msg.textContent = 'Проверь адрес почты — кажется, есть опечатка';
+          return;
+        }
+      }
+      if (!cats.length) {
+        msg.className = 'sub-msg err'; msg.textContent = 'Выбери хотя бы одну категорию';
+        return;
+      }
+      msg.textContent = 'Отправляем…';
+      fetch('https://skidki.arhi-media.ru:2083/api/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ contact: contact, channel: chan, categories: cats.join(','), source: 'site' })
+      }).then(function(r) { return r.json(); }).then(function(d) {
+        if (d && d.ok) {
+          msg.className = 'sub-msg ok';
+          msg.textContent = d.status === 'updated' ? 'Подписка обновлена — лови дропы!' : 'Подписались! Лови дропы первыми';
+          document.getElementById('subcontact').value = '';
+        } else {
+          msg.className = 'sub-msg err';
+          var m = { email_invalid: 'Проверь адрес почты — кажется, есть опечатка',
+                    tg_username_invalid: 'Введи ник в Telegram, например @username',
+                    no_categories: 'Выбери хотя бы одну категорию' };
+          msg.textContent = m[d && d.error] || 'Не получилось — попробуй ещё раз';
+        }
+      }).catch(function() {
+        msg.className = 'sub-msg err';
+        msg.textContent = 'Сеть недоступна — попробуй ещё раз';
+      });
+    });
+  }
+
+  applyFav(); favCount(); applyFilter();
+
+  tick(); setInterval(tick, 15000);
+
+  render(current());
+})();
+</script></body></html>
